@@ -1,0 +1,157 @@
+#wrapper {
+    margin: 0 auto;
+}
+body {
+    /*background-image: url("/assets/images/background.jpg");*/
+}
+#header {
+    height: 250px;
+    position: relative;
+}
+
+#logo {
+    width: 400px;
+    height: 250px;
+}
+
+#auth {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+#menu {
+    position: absolute;
+    right: 0;
+    top: 66px;
+}
+
+#menu li {
+    display: block;
+    float: left;
+    padding: 30px;
+    margin: 20px;
+}
+
+#menubuttons {
+    display: inline;
+    float: left;
+}
+
+#menubuttons li {
+    display: inline;
+    float: left;
+    padding-right: 5px;
+    margin-bottom: 5px;
+    list-style-type: none;
+}
+
+.about {
+    color: pink;
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+    text-align: center;
+}
+
+.image {
+    float: left;
+    width: 250px;
+}
+
+#content {
+    border: 1px solid black;
+    padding: 10px;
+    margin-top: 30px;
+}
+
+
+.clear {
+    clear: both;
+}
+
+.myGallery {
+    /*display: grid;*/
+    /*grid-gap: 10px;*/
+    /*grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));*/
+    text-align: center;
+}
+
+.myGallery img {
+    object-fit: cover;
+    width:230px;
+    height:230px;
+    margin: 5px;
+}
+
+.imgWrapper {
+    margin: 0px auto;
+}
+
+.form-label {
+    color: pink;
+}
+
+.contact_div {
+    width: 500px;
+}
+
+.message_form {
+    width: 500px;
+    height: 300px;
+}
+
+.outer_form_div {
+    display: block;
+    text-align: center;
+}
+
+.inner_form {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.card {
+    background-color: transparent;
+}
+
+.adminPanelList {
+    width: 250px;
+}
+
+.list-group-item a {
+    background-color: pink;
+}
+
+.card-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    width: 200px;
+    overflow: hidden;
+}
+
+.big-card {
+    margin: auto;
+}
+
+.btn.btn-danger {
+    background-color: red;
+    color: black;
+}
+
+.btn.btn-danger:hover{
+    background-color: darkred;
+    color: black;
+    border-color: darkred;
+}
+
+.article {
+    height: 100px;
+    width: 300px;
+    background-color: purple;
+    opacity:0.8;
+    margin-bottom: 5px;
+}
