@@ -21,12 +21,14 @@
                     </ul>
                 </div>
                 <div id="auth">
-                    @if (isset($_SESSION['user_id']))
+                    @if (auth()->user())
                         <div id="menubuttons">
                             <ul>
-                                <li>
-                                    <a class="btn btn-primary" href="/admin">admin</a>
-                                </li>
+                                @if (auth()->user()->admin)
+                                    <li>
+                                        <a class="btn btn-primary" href="/admin">admin</a>
+                                    </li>
+                                @endif
                                 <li>
                                     <a class="btn btn-primary" href="/logout">Logout</a>
                                 </li>

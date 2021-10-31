@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminPanelController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\GraboidsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
@@ -16,11 +18,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/smth', function () {
     return view('something');
 });
+
+Route::get('/logout', [AuthenticatedSessionController::class, 'destroy']);
+
+// Admin ////////////////////
+
+Route::get('/admin', [AdminPanelController::class, 'index'])
+    ->name('admin.index');
+
+/////////////////////////////
 
 Route::get('/news', [NewsController::class, 'index'])
     ->name('news.index');

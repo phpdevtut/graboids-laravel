@@ -3,9 +3,9 @@
 @extends('layouts.main')
 
 @section('content')
-    @if (!empty($_SESSION['message']))
-        <div class="alert alert-warning" role="alert">
-            // TODO
+    @if (session('message'))
+        <div class="alert alert-danger">
+            {{ session('message') }}
         </div>
     @endif
     <div class="myGallery">
