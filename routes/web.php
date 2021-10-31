@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminPanelController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\GraboidsController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HunterController;
 use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
 
@@ -42,5 +43,12 @@ Route::get('/graboids/{graboidId}', [GraboidsController::class, 'show'])
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::get('/hunters', [HunterController::class, 'index'])
+    ->name('hunters.index');
+Route::get('/hunters/{hunterId}', [HunterController::class, 'show'])
+    ->name('hunters.show');
+Route::get('/hunters/{hunterId}/delete', [HunterController::class, 'delete'])
+    ->name('hunters.delete');
 
 require __DIR__.'/auth.php';
