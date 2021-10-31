@@ -12,7 +12,7 @@
         @foreach ($graboids->chunk(5) as $graboidsChunk)
             <div class="imgWrapper">
                 @foreach ($graboidsChunk as $graboid)
-                    <a href="/{{ $graboid->id }}">
+                    <a href="{{ route('home.show', ['graboidId' => $graboid->id]) }}">
                         <img class="img-thumbnail rounded float-start" src="{{ $graboid->src }}" />
                     </a>
                 @endforeach
