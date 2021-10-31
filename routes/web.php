@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,3 +20,6 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/smth', function () {
     return view('something');
 });
+
+Route::get('/news', [NewsController::class, 'index'])
+    ->name('news.index');

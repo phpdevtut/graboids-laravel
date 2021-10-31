@@ -13,7 +13,7 @@
                 <div id="menu">
                     <ul>
                         <li><a href="/">Home</a></li>
-                        <li><a href="/news">News</a></li>
+                        <li><a href="{{ route('news.index') }}">News</a></li>
                         <li><a href="/hunters">Hunters</a></li>
                         <li><a href="/upload">Upload</a></li>
                         <li><a href="/about">About</a></li>
