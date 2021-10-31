@@ -21,28 +21,7 @@
                     </ul>
                 </div>
                 <div id="auth">
-                    @if (auth()->user())
-                        <div id="menubuttons">
-                            <ul>
-                                @if (auth()->user()->admin)
-                                    <li>
-                                        <a class="btn btn-primary" href="/admin">admin</a>
-                                    </li>
-                                @endif
-                                <li>
-                                    <a class="btn btn-primary" href="/logout">Logout</a>
-                                </li>
-                            </ul>
-                        </div>
-                    @else
-                        <div class="col-auto mb-3">
-                            <button class="btn btn-primary" type="submit"><a href="/login">Login</a></button>
-                        </div>
-
-{{--                        <a class="btn btn-primary" href="/admin/logout.php">logout</a>
-                    @else
-                        <a class="btn btn-primary" href="/admin/login.php">Login</a>--}}
-                    @endif
+                    @include('shared.menu')
                 </div>
             </div>
             <div class="alert"><p style="color:red">Graboid alert!!!</p></div>

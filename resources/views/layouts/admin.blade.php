@@ -21,26 +21,7 @@
                     </ul>
                 </div>
                 <div id="auth">
-                    @if (isset($_SESSION['user_id']))
-                        <div id="menubuttons">
-                            <ul>
-                                <li>
-                                    <a class="btn btn-primary" href="/admin">admin</a>
-                                </li>
-                                <li>
-                                    <a class="btn btn-primary" href="/logout">Logout</a>
-                                </li>
-                            </ul>
-                        </div>
-                    @else
-                        <div class="col-auto mb-3">
-                            <button class="btn btn-primary" type="submit"><a href="/login">Login</a></button>
-                        </div>
-
-                        {{--                        <a class="btn btn-primary" href="/admin/logout.php">logout</a>
-                                            @else
-                                                <a class="btn btn-primary" href="/admin/login.php">Login</a>--}}
-                    @endif
+                    @include('shared.menu')
                 </div>
             </div>
 
