@@ -6,7 +6,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Graboid;
 
-class GraboidController
+class GraboidsController
 {
     public function index()
     {

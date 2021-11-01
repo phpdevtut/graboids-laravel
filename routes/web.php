@@ -3,7 +3,6 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Admin\AdminPanelController;
 use App\Http\Controllers\Admin\ArticlesController;
-use App\Http\Controllers\Admin\GraboidController;
 use App\Http\Controllers\Admin\HuntersController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -49,11 +48,11 @@ Route::get('/admin/hunters/{hunterId}/edit', [HuntersController::class, 'edit'])
 Route::get('/admin/hunters/{hunterId}', [HuntersController::class, 'update'])
     ->name('admin.updatehunter');
 
-Route::get('/admin/graboids', [GraboidController::class, 'index'])
+Route::get('/admin/graboids', [\App\Http\Controllers\Admin\GraboidsController::class, 'index'])
     ->name('admin.index');
-Route::get('/admin/graboids/{graboidsId}/edit', [GraboidController::class, 'edit'])
+Route::get('/admin/graboids/{graboidsId}/edit', [\App\Http\Controllers\Admin\GraboidsController::class, 'edit'])
     ->name('admin.editgraboids');
-Route::get('/admin/graboids/{graboidsId}', [GraboidController::class, 'update'])
+Route::get('/admin/graboids/{graboidsId}', [\App\Http\Controllers\Admin\GraboidsController::class, 'update'])
     ->name('admin.updategraboids');
 
 Route::get('/admin/news', [\App\Http\Controllers\Admin\ArticlesController::class, 'index'])
