@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Admin\AdminPanelController;
+use App\Http\Controllers\Admin\ArticlesController;
 use App\Http\Controllers\Admin\GraboidController;
 use App\Http\Controllers\Admin\HuntersController;
 use App\Http\Controllers\Admin\UsersController;
@@ -55,11 +56,11 @@ Route::get('/admin/graboids/{graboidsId}/edit', [GraboidController::class, 'edit
 Route::get('/admin/graboids/{graboidsId}', [GraboidController::class, 'update'])
     ->name('admin.updategraboids');
 
-Route::get('/admin/news', [NewsController::class, 'index'])
+Route::get('/admin/news', [\App\Http\Controllers\Admin\ArticlesController::class, 'index'])
     ->name('admin.index');
-Route::get('/admin/news/{newsId}/edit', [NewsController::class, 'edit'])
+Route::get('/admin/news/{newsId}/edit', [ArticlesController::class, 'edit'])
     ->name('admin.editnews');
-Route::get('/admin/news/{newsId}', [NewsController::class, 'update'])
+Route::get('/admin/news/{newsId}', [ArticlesController::class, 'update'])
     ->name('admin.updatenews');
 
 Route::get('/admin/users', [UsersController::class, 'index'])
