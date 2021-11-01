@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Admin\AdminPanelController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GraboidsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HunterController;
@@ -50,5 +52,12 @@ Route::get('/hunters/{hunterId}', [HunterController::class, 'show'])
     ->name('hunters.show');
 Route::get('/hunters/{hunterId}/delete', [HunterController::class, 'delete'])
     ->name('hunters.delete');
+
+Route::get('/about', [AboutController::class, 'index'])
+    ->name('about.index');
+
+Route::get('/contact', [ContactController::class, 'index'])
+    ->name('contact.index');
+
 
 require __DIR__.'/auth.php';
