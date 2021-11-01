@@ -36,9 +36,9 @@ Route::get('/logout', [AuthenticatedSessionController::class, 'destroy']);
 
 Route::get('/admin', [AdminPanelController::class, 'index'])
     ->name('admin.index');
-Route::get('/admin/add-article', [NewsController::class, 'add'])
+Route::get('/admin/add-article', [ArticlesController::class, 'add'])
     ->name('admin.addarticle');
-Route::get('/admin/add-hunter', [HunterController::class, 'add'])
+Route::get('/admin/add-hunter', [HuntersController::class, 'add'])
     ->name('admin.addhunter');
 
 Route::get('/admin/hunters', [HuntersController::class, 'index'])
