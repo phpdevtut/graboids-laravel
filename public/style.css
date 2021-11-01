@@ -3,6 +3,7 @@
 }
 body {
     /*background-image: url("/assets/images/background.jpg");*/
+    background-color: #494949;
 }
 #header {
     height: 250px;
@@ -148,6 +149,10 @@ body {
     border-color: darkred;
 }
 
+.btn-primary a {
+    color: black;
+}
+
 .article {
     height: 100px;
     width: 300px;
@@ -155,3 +160,12 @@ body {
     opacity:0.8;
     margin-bottom: 5px;
 }
+
+.addarticle, .addhunter {
+    float: right;
+}
+
+.adminarticlesheader, .adminhuntersheader {
+    float: left;
+}
+
