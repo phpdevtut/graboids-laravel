@@ -33,12 +33,45 @@ Route::get('/logout', [AuthenticatedSessionController::class, 'destroy']);
 
 Route::get('/admin', [AdminPanelController::class, 'index'])
     ->name('admin.index');
+Route::get('/admin/add-article', [NewsController::class, 'add'])
+    ->name('admin.addarticle');
+Route::get('/admin/add-hunter', [HunterController::class, 'add'])
+    ->name('admin.addhunter');
+
+Route::get('/admin/hunters', [HunterController::class, 'index'])
+    ->name('admin.index');
+Route::get('/admin/hunters/{hunterId}/edit', [HunterController::class, 'edit'])
+    ->name('admin.edithunter');
+Route::get('/admin/hunters/{hunterId}', [HunterController::class, 'update'])
+    ->name('admin.updatehunter');
+
+Route::get('/admin/graboids', [GraboidsController::class, 'index'])
+    ->name('admin.index');
+Route::get('/admin/graboids/{graboidsId}/edit', [GraboidsController::class, 'edit'])
+    ->name('admin.editgraboids');
+Route::get('/admin/graboids/{graboidsId}', [GraboidsController::class, 'update'])
+    ->name('admin.updategraboids');
+
+Route::get('/admin/news', [NewsController::class, 'index'])
+    ->name('admin.index');
+Route::get('/admin/news/{newsId}/edit', [NewsController::class, 'edit'])
+    ->name('admin.editnews');
+Route::get('/admin/news/{newsId}', [NewsController::class, 'update'])
+    ->name('admin.updatenews');
+
+Route::get('/admin/users', [UsersController::class, 'index'])
+    ->name('admin.index');
+Route::get('/admin/users/{usersId}/edit', [UsersController::class, 'edit'])
+    ->name('admin.editusers');
+
+
 
 /////////////////////////////
 
 Route::get('/news', [NewsController::class, 'index'])
     ->name('news.index');
 
+//Graboids
 Route::get('/graboids/{graboidId}', [GraboidsController::class, 'show'])
     ->name('home.show');
 
@@ -46,6 +79,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+//Hunters
 Route::get('/hunters', [HunterController::class, 'index'])
     ->name('hunters.index');
 Route::get('/hunters/{hunterId}', [HunterController::class, 'show'])
@@ -53,9 +87,15 @@ Route::get('/hunters/{hunterId}', [HunterController::class, 'show'])
 Route::get('/hunters/{hunterId}/delete', [HunterController::class, 'delete'])
     ->name('hunters.delete');
 
+//Upload
+Route::get('/upload', [UploadController::class, 'index'])
+    ->name('upload.index');
+
+//About
 Route::get('/about', [AboutController::class, 'index'])
     ->name('about.index');
 
+//Contact
 Route::get('/contact', [ContactController::class, 'index'])
     ->name('contact.index');
 
