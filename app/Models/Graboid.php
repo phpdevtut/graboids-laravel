@@ -13,6 +13,9 @@ class Graboid extends Model
         'src',
     ];
 
+    /**
+     * @return MorphMany
+     */
     public function comments(): MorphMany
     {
         return $this->morphMany(

@@ -4,11 +4,19 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Admin;
 use App\Models\News;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 
 class ArticlesController extends Controller
 {
+    /**
+     * @return Application|Factory|View
+     */
     public function index()
     {
         $news = News::all();
@@ -18,6 +26,9 @@ class ArticlesController extends Controller
         ]);
     }
 
+    /**
+     * @param int $newsId
+     */
     public function edit(int $newsId)
     {
         $new = News::find($newsId);
@@ -29,6 +40,9 @@ class ArticlesController extends Controller
         echo $newsId;
     }
 
+    /**
+     * @param int $newsId
+     */
     public function update(int $newsId)
     {
         $requestData = [
@@ -42,6 +56,9 @@ class ArticlesController extends Controller
         header('Location: /admin/news');
     }
 
+    /**
+     * @return Application|Factory|View|RedirectResponse|Redirector
+     */
     public function add()
     {
         // here we want to check a request:

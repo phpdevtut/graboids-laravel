@@ -1,12 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Models\Hunter;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 
 class HunterController extends Controller
 {
+    /**
+     * @return Application|Factory|View
+     */
     public function index() {
         $hunters = Hunter::all();
 
@@ -15,6 +24,10 @@ class HunterController extends Controller
         ]);
     }
 
+    /**
+     * @param int $hunterId
+     * @return Application|Factory|View
+     */
     public function show(int $hunterId) {
         // gives back single hunter database object?
         $hunter = Hunter::find($hunterId);
@@ -25,6 +38,10 @@ class HunterController extends Controller
         ]);
     }
 
+    /**
+     * @param int $hunterId
+     * @return Application|RedirectResponse|Redirector
+     */
     public function delete(int $hunterId)
     {
         Hunter::deleteById($hunterId);

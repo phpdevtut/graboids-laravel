@@ -5,9 +5,15 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Graboid;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 
 class GraboidsController
 {
+    /**
+     * @return Application|Factory|View
+     */
     public function index()
     {
         $graboids = Graboid::all();
@@ -17,6 +23,10 @@ class GraboidsController
         ]);
     }
 
+    /**
+     * @param int $graboidId
+     * @return Application|Factory|View
+     */
     public function edit(int $graboidId)
     {
         $graboid = Graboid::find($graboidId);
@@ -28,6 +38,9 @@ class GraboidsController
         echo $graboidId;
     }
 
+    /**
+     * @param int $graboidId
+     */
     public function update(int $graboidId)
     {
         $requestData = [

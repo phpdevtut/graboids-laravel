@@ -1,10 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 
 
 class UsersController extends Controller
@@ -16,6 +20,9 @@ class UsersController extends Controller
         $this->blade = new Blade('views', 'cache');
     }*/
 
+    /**
+     * @return Application|Factory|View
+     */
     public function index()
     {
         $users = User::all();
@@ -24,6 +31,10 @@ class UsersController extends Controller
             'users' => $users,
         ]);
     }
+
+    /**
+     * @param int $usersId
+     */
     public function edit(int $usersId)
     {
         $user = User::find($usersId);

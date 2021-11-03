@@ -5,10 +5,18 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 
 class AdminPanelController extends Controller
 {
+    /**
+     * @return Application|Factory|View|RedirectResponse|Redirector
+     */
     public function index()
     {
         // here we want to check a request:

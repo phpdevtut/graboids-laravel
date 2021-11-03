@@ -7,10 +7,18 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateOrUpdateHunterRequest;
 use App\Models\Hunter;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 
 class HuntersController extends Controller
 {
+    /**
+     * @return Application|Factory|View
+     */
     public function index()
     {
         $hunters = Hunter::all();
@@ -20,11 +28,18 @@ class HuntersController extends Controller
         ]);
     }
 
+    /**
+     * @param int $hunterId
+     */
     public function show(int $hunterId)
     {
 
     }
 
+    /**
+     * @param int $hunterId
+     * @return Application|Factory|View
+     */
     public function edit(int $hunterId)
     {
         $hunter = Hunter::find($hunterId);
@@ -34,6 +49,11 @@ class HuntersController extends Controller
         ]);
     }
 
+    /**
+     * @param CreateOrUpdateHunterRequest $request
+     * @param int $hunterId
+     * @return Application|RedirectResponse|Redirector
+     */
     public function update(CreateOrUpdateHunterRequest $request, int $hunterId)
     {
         $validated = $request->validated();
@@ -45,6 +65,9 @@ class HuntersController extends Controller
             ->with('status', 'Hunter updated!');
     }
 
+    /**
+     * @return Application|Factory|View|RedirectResponse|Redirector
+     */
     public function new()
     {
         if (!Auth::check()) {
@@ -60,6 +83,10 @@ class HuntersController extends Controller
         return view('hunters.addHunter');
     }
 
+    /**
+     * @param CreateOrUpdateHunterRequest $request
+     * @return Application|RedirectResponse|Redirector
+     */
     public function store(CreateOrUpdateHunterRequest $request)
     {
         $validated = $request->validated();
