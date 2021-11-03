@@ -6,9 +6,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Graboid;
 use App\Models\User;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 
 class GraboidsController extends Controller
 {
+    /**
+     * @param int $graboidId
+     * @return Application|Factory|View
+     */
     public function show(int $graboidId)
     {
         $graboid = Graboid::with('comments')->find($graboidId);
@@ -17,6 +24,10 @@ class GraboidsController extends Controller
             'graboid' => $graboid,
         ]);
     }
+
+    /**
+     * @return Application|Factory|View
+     */
     public function index()
     {
         $user = null;
@@ -27,7 +38,7 @@ class GraboidsController extends Controller
 
         $graboids = Graboid::all();
 
-        echo view('home.content', [
+        return view('home.content', [
             'graboids' => $graboids,
             'user' => $user,
         ]);
