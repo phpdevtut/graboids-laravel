@@ -5,7 +5,7 @@
         <div class="row">
             <div>
                 <h3 class="adminarticlesheader">Articles</h3>
-                <a class="addarticle" href="/admin/add-article">Add Article</a>
+                <a class="addarticle" href="{{ route('admin.article.new') }}">Add Article</a>
                 <table class="table table-dark table-striped">
                     <thead>
                     <tr>

@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace App\Http\Controllers\Admin;
+use App\Http\Requests\CreateOrUpdateNewsRequest;
 use App\Models\News;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -59,7 +60,7 @@ class ArticlesController extends Controller
     /**
      * @return Application|Factory|View|RedirectResponse|Redirector
      */
-    public function add()
+    public function new()
     {
         // here we want to check a request:
         // - we want to check if request has a cookie for us
@@ -76,5 +77,14 @@ class ArticlesController extends Controller
         }
 
         return view('news.addArticle');
+    }
+
+    public function store(CreateOrUpdateNewsRequest $request)
+    {
+        $validated = $request->validated();
+        News::create($validated);
+
+        return redirect(route('admin.news.index'));
+
     }
 }

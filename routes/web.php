@@ -36,8 +36,11 @@ Route::get('/logout', [AuthenticatedSessionController::class, 'destroy']);
 
 Route::get('/admin', [AdminPanelController::class, 'index'])
     ->name('admin.index');
-Route::get('/admin/add-article', [ArticlesController::class, 'add'])
-    ->name('admin.addarticle');
+Route::get('/admin/article/new', [ArticlesController::class, 'new'])
+    ->name('admin.article.new');
+Route::post('admin/article', [ArticlesController::class, 'store'])
+    ->name('admin.article.store');
+
 Route::get('/admin/hunter/new', [HuntersController::class, 'new'])
     ->name('admin.hunter.new');
 Route::post('/admin/hunter', [HuntersController::class, 'store'])
@@ -58,7 +61,7 @@ Route::get('/admin/graboids/{graboidsId}', [\App\Http\Controllers\Admin\Graboids
     ->name('admin.updategraboids');
 
 Route::get('/admin/news', [\App\Http\Controllers\Admin\ArticlesController::class, 'index'])
-    ->name('admin.index');
+    ->name('admin.news.index');
 Route::get('/admin/news/{newsId}/edit', [ArticlesController::class, 'edit'])
     ->name('admin.editnews');
 Route::get('/admin/news/{newsId}', [ArticlesController::class, 'update'])
