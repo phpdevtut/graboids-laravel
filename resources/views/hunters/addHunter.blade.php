@@ -3,8 +3,20 @@
 @section('content')
     <div class="outer_form_div">
         <h4>Add a Hunter</h4>
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <div class="inner_form">
-            <form action="/admin/addHunter.php" method="POST">
+            <form action="{{ route('admin.hunter.store') }}" method="POST">
+                {{ csrf_field() }}
                 <div class="col-auto mb-3">
                     <p>src</p>
                     <input class="form-control" name="src">

@@ -10,6 +10,12 @@ class Hunter extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'src',
+        'description',
+    ];
+
     public function comments(): MorphMany
     {
         return $this->morphMany(

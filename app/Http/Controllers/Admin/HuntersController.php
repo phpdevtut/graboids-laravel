@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateOrUpdateHunterRequest;
 use App\Models\Hunter;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,32 +20,32 @@ class HuntersController extends Controller
         ]);
     }
 
+    public function show(int $hunterId)
+    {
+
+    }
+
     public function edit(int $hunterId)
     {
         $hunter = Hunter::find($hunterId);
 
-        echo view('admin.hunters.edit', [
+        return view('admin.hunters.edit', [
             'hunter' => $hunter,
         ]);
-
-        echo $hunterId;
     }
 
-    public function update(int $hunterId)
+    public function update(CreateOrUpdateHunterRequest $request, int $hunterId)
     {
-        $requestData = [
-            'src' => $_POST['src'],
-            'name' => $_POST['name'],
-            'description' => $_POST['description'],
-        ];
+        $validated = $request->validated();
 
         $hunter = Hunter::find($hunterId);
-        $hunter->update($requestData);
+        $hunter->update($validated);
 
-        header('Location: /admin/hunters');
+        return redirect(route('admin.hunters.index'))
+            ->with('status', 'Hunter updated!');
     }
 
-    public function add()
+    public function new()
     {
         if (!Auth::check()) {
             return redirect(route('login'));
@@ -57,5 +58,13 @@ class HuntersController extends Controller
         }
 
         return view('hunters.addHunter');
+    }
+
+    public function store(CreateOrUpdateHunterRequest $request)
+    {
+        $validated = $request->validated();
+        Hunter::create($validated);
+
+        return redirect(route('admin.hunters.index'));
     }
 }

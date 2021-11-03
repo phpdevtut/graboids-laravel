@@ -38,14 +38,16 @@ Route::get('/admin', [AdminPanelController::class, 'index'])
     ->name('admin.index');
 Route::get('/admin/add-article', [ArticlesController::class, 'add'])
     ->name('admin.addarticle');
-Route::get('/admin/add-hunter', [HuntersController::class, 'add'])
-    ->name('admin.addhunter');
+Route::get('/admin/hunter/new', [HuntersController::class, 'new'])
+    ->name('admin.hunter.new');
+Route::post('/admin/hunter', [HuntersController::class, 'store'])
+    ->name('admin.hunter.store');
 
 Route::get('/admin/hunters', [HuntersController::class, 'index'])
-    ->name('admin.index');
+    ->name('admin.hunters.index');
 Route::get('/admin/hunters/{hunterId}/edit', [HuntersController::class, 'edit'])
     ->name('admin.edithunter');
-Route::get('/admin/hunters/{hunterId}', [HuntersController::class, 'update'])
+Route::post('/admin/hunters/{hunterId}', [HuntersController::class, 'update'])
     ->name('admin.updatehunter');
 
 Route::get('/admin/graboids', [\App\Http\Controllers\Admin\GraboidsController::class, 'index'])

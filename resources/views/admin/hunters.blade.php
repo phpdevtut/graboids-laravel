@@ -5,7 +5,14 @@
         <div class="row">
             <div>
                 <h3 class="adminhuntersheader">Hunters</h3>
-                <a class="addhunter" href="/admin/add-hunter">Add Hunter</a>
+
+                @if (session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                @endif
+
+                <a class="addhunter" href="{{ route('admin.hunter.new') }}">Add Hunter</a>
                 <table class="table table-dark table-striped">
                     <thead>
                     <tr>
