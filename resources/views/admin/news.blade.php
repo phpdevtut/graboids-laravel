@@ -5,6 +5,13 @@
         <div class="row">
             <div>
                 <h3 class="adminarticlesheader">Articles</h3>
+
+                @if (session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                @endif
+
                 <a class="addarticle" href="{{ route('admin.article.new') }}">Add Article</a>
                 <table class="table table-dark table-striped">
                     <thead>

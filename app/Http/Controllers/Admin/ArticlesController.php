@@ -34,27 +34,22 @@ class ArticlesController extends Controller
     {
         $new = News::find($newsId);
 
-        echo view('admin.news.edit', [
+        return view('admin.news.edit', [
             'new' => $new,
         ]);
-
-        echo $newsId;
     }
 
     /**
      * @param int $newsId
      */
-    public function update(int $newsId)
+    public function update(CreateOrUpdateNewsRequest $request, int $newsId)
     {
-        $requestData = [
-            'title' => $_POST['title'],
-            'content' => $_POST['content'],
-        ];
-
+        $validated = $request->validated();
         $new = News::find($newsId);
-        $new->update($requestData);
+        $new->update($validated);
 
-        header('Location: /admin/news');
+        return redirect('/admin/news')
+            ->with('status', 'Article updated!');
     }
 
     /**
@@ -84,7 +79,8 @@ class ArticlesController extends Controller
         $validated = $request->validated();
         News::create($validated);
 
-        return redirect(route('admin.news.index'));
+        return redirect(route('admin.news.index'))
+            ->with('status', 'Article added!');
 
     }
 }

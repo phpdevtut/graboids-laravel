@@ -64,7 +64,7 @@ Route::get('/admin/news', [\App\Http\Controllers\Admin\ArticlesController::class
     ->name('admin.news.index');
 Route::get('/admin/news/{newsId}/edit', [ArticlesController::class, 'edit'])
     ->name('admin.editnews');
-Route::get('/admin/news/{newsId}', [ArticlesController::class, 'update'])
+Route::post('/admin/news/{newsId}', [ArticlesController::class, 'update'])
     ->name('admin.updatenews');
 
 Route::get('/admin/users', [UsersController::class, 'index'])

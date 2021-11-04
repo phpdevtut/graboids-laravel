@@ -92,6 +92,7 @@ class HuntersController extends Controller
         $validated = $request->validated();
         Hunter::create($validated);
 
-        return redirect(route('admin.hunters.index'));
+        return redirect(route('admin.hunters.index'))
+            ->with('status', 'Hunter added!');
     }
 }
