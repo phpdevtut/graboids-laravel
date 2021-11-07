@@ -8,6 +8,8 @@ use App\Models\Graboid;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 
 class GraboidsController
 {
@@ -34,12 +36,11 @@ class GraboidsController
         return view('admin.graboids.edit', [
             'graboid' => $graboid,
         ]);
-
-        echo $graboidId;
     }
 
     /**
      * @param int $graboidId
+     * @return Application|RedirectResponse|Redirector
      */
     public function update(int $graboidId)
     {
@@ -50,32 +51,8 @@ class GraboidsController
         $graboid = Graboid::find($graboidId);
         $graboid->update($requestData);
 
-        header('Location: /admin/graboids');
-    }
-
-/*    public function add()
-    {
-        $blade = new Blade('views', 'cache');
-
-        // here we want to check a request:
-        // - we want to check if request has a cookie for us
-        // - if yes, we can check if there is a valid(existing) session id in the cookie
-        // - if no, we will redirect the user to login page
-        if (empty($_COOKIE)) {
-            header('Location: /admin/login.php');
-        }
-
-        if (empty($_SESSION['is_admin'])) {
-            header('Location: /');
-        }
-
-        $html = $blade->render('hunters.addHunter');
-
-        echo $html;
-    }*/
-
-    public function create()
-    {
-
+        return redirect(
+            route('admin.graboids.index')
+        );
     }
 }

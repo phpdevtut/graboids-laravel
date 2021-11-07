@@ -61,15 +61,6 @@ class ArticlesController extends Controller
         // - we want to check if request has a cookie for us
         // - if yes, we can check if there is a valid(existing) session id in the cookie
         // - if no, we will redirect the user to login page
-        if (!Auth::check()) {
-            return redirect(route('login'));
-        }
-
-        $user = auth()->user();
-
-        if (!$user->admin) {
-            return redirect(route('home'));
-        }
 
         return view('news.addArticle');
     }
