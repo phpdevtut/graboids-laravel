@@ -5,7 +5,7 @@
         <h4>Edit a Hunter</h4>
         <div class="inner_form">
             //putting in route name gives error (missing hunterId parameter)
-            <form action="/admin/hunters/{{ $hunter->id }}" method="POST">
+            <form action="{{ route('admin.updatehunter', ['hunterId' => $hunter->id]) }}" method="POST">
                 {{ csrf_field() }}
                 <div>
                     <img src="{{ $hunter->src }}" />
