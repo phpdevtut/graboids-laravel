@@ -2,7 +2,7 @@
 
 @section('content')
     <div class=big-card style="width: 25rem;">
-        @if (isset($_SESSION['is_admin']))
+        @if (auth()->user()->admin)
             <div>
                 <a class="btn btn-danger" href="/hunters/{{ $hunter->id }}/delete">Delete</a>
             </div>
