@@ -1,15 +1,11 @@
 <?php
 
 use App\Http\Controllers\AboutController;
-use App\Http\Controllers\Admin\AdminPanelController;
-use App\Http\Controllers\Admin\ArticlesController;
-use App\Http\Controllers\Admin\HuntersController;
-use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GraboidsController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\HunterController;
+use App\Http\Controllers\HuntersController;
 use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,47 +28,6 @@ Route::get('/smth', function () {
 
 Route::get('/logout', [AuthenticatedSessionController::class, 'destroy']);
 
-// Admin ////////////////////
-
-Route::get('/admin', [AdminPanelController::class, 'index'])
-    ->name('admin.index');
-Route::get('/admin/article/new', [ArticlesController::class, 'new'])
-    ->name('admin.article.new');
-Route::post('admin/article', [ArticlesController::class, 'store'])
-    ->name('admin.article.store');
-
-Route::get('/admin/hunter/new', [HuntersController::class, 'new'])
-    ->name('admin.hunter.new');
-Route::post('/admin/hunter', [HuntersController::class, 'store'])
-    ->name('admin.hunter.store');
-
-Route::get('/admin/hunters', [HuntersController::class, 'index'])
-    ->name('admin.hunters.index');
-Route::get('/admin/hunters/{hunterId}/edit', [HuntersController::class, 'edit'])
-    ->name('admin.edithunter');
-Route::post('/admin/hunters/{hunterId}', [HuntersController::class, 'update'])
-    ->name('admin.updatehunter');
-
-Route::get('/admin/graboids', [\App\Http\Controllers\Admin\GraboidsController::class, 'index'])
-    ->name('admin.index');
-Route::get('/admin/graboids/{graboidsId}/edit', [\App\Http\Controllers\Admin\GraboidsController::class, 'edit'])
-    ->name('admin.editgraboids');
-Route::get('/admin/graboids/{graboidsId}', [\App\Http\Controllers\Admin\GraboidsController::class, 'update'])
-    ->name('admin.updategraboids');
-
-Route::get('/admin/news', [\App\Http\Controllers\Admin\ArticlesController::class, 'index'])
-    ->name('admin.news.index');
-Route::get('/admin/news/{newsId}/edit', [ArticlesController::class, 'edit'])
-    ->name('admin.editnews');
-Route::post('/admin/news/{newsId}', [ArticlesController::class, 'update'])
-    ->name('admin.updatenews');
-
-Route::get('/admin/users', [UsersController::class, 'index'])
-    ->name('admin.index');
-Route::get('/admin/users/{usersId}/edit', [UsersController::class, 'edit'])
-    ->name('admin.editusers');
-
-
 
 /////////////////////////////
 
@@ -88,11 +43,11 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 //Hunters
-Route::get('/hunters', [HunterController::class, 'index'])
+Route::get('/hunters', [HuntersController::class, 'index'])
     ->name('hunters.index');
-Route::get('/hunters/{hunterId}', [HunterController::class, 'show'])
+Route::get('/hunters/{hunterId}', [HuntersController::class, 'show'])
     ->name('hunters.show');
-Route::get('/hunters/{hunterId}/delete', [HunterController::class, 'delete'])
+Route::get('/hunters/{hunterId}/delete', [HuntersController::class, 'delete'])
     ->name('hunters.delete');
 
 //Upload

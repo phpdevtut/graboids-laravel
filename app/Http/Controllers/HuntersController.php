@@ -11,7 +11,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 
-class HunterController extends Controller
+class HuntersController extends Controller
 {
     /**
      * @return Application|Factory|View
