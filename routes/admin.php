@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\GraboidsController;
+use App\Http\Controllers\Admin\ContactsController;
 use App\Http\Middleware\AllowedToEnterAdminPanel;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HuntersController;
@@ -56,4 +57,10 @@ Route::middleware(AllowedToEnterAdminPanel::class)->group(function() {
         ->name('admin.users.edit');
     Route::post('/admin/users/{userId}', [UsersController::class, 'update'])
         ->name('admin.users.update');
+
+// Messages
+    Route::get('/admin/messages', [ContactsController::class, 'index'])
+        ->name('admin.messages.index');
+    Route::get('/admin/{messageId}/open', [ContactsController::class, 'open'])
+        ->name('admin.messages.open');
 });
