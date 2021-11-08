@@ -48,7 +48,7 @@ class ArticlesController extends Controller
         $new = News::find($newsId);
         $new->update($validated);
 
-        return redirect('/admin/news')
+        return redirect(route('admin.news.index'))
             ->with('status', 'Article updated!');
     }
 

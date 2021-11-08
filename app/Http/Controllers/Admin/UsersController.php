@@ -39,10 +39,8 @@ class UsersController extends Controller
     {
         $user = User::find($usersId);
 
-        echo view('admin.users.edit', [
+        return view('admin.users.edit', [
             'user' => $user,
         ]);
-
-        echo $usersId;
     }
 }
