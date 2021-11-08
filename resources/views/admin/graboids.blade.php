@@ -19,7 +19,7 @@
                             <td>{{ $graboid->id }}</td>
                             <td>{{ $graboid->src }}</td>
                             <td>
-                                <a href="/admin/graboids/{{ $graboid->id }}/edit" class="btn btn-warning">Edit</a>
+                                <a href="{{ route('admin.graboids.edit', ['graboidsId' => $graboid->id]) }}" class="btn btn-warning">Edit</a>
                             </td>
                         </tr>
                     @endforeach

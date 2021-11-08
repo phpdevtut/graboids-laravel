@@ -4,7 +4,8 @@
     <div class="outer_form_div">
         <h4>Edit an Article</h4>
         <div class="inner_form">
-            <form action="/admin/news/{{ $new->id }}" method="POST">
+            <form action="{{ route('admin.news.update', ['newsId' => $new->id]) }}" method="POST">
+
                 {{ csrf_field() }}
                 <div class="col-auto mb-3">
                     <p>ID</p>

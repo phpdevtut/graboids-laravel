@@ -15,7 +15,7 @@
         @endif
 
         <div class="inner_form">
-            <form action="{{ route('admin.hunter.store') }}" method="POST">
+            <form action="{{ route('admin.hunters.store') }}" method="POST">
                 {{ csrf_field() }}
                 <div class="col-auto mb-3">
                     <p>src</p>

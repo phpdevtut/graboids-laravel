@@ -15,7 +15,7 @@
     @endif
 
     <div class="inner_form">
-        <form action="{{ route('admin.article.store') }}" method="POST">
+        <form action="{{ route('admin.articles.store') }}" method="POST">
             {{ csrf_field() }}
             <p>Title:</p>
                 <div name="title" class="col-auto mb-3">

@@ -13,19 +13,6 @@ use Illuminate\Contracts\View\View;
 class GraboidsController extends Controller
 {
     /**
-     * @param int $graboidId
-     * @return Application|Factory|View
-     */
-    public function show(int $graboidId)
-    {
-        $graboid = Graboid::with('comments')->find($graboidId);
-
-        return view('home.show', [
-            'graboid' => $graboid,
-        ]);
-    }
-
-    /**
      * @return Application|Factory|View
      */
     public function index()
@@ -43,5 +30,20 @@ class GraboidsController extends Controller
             'user' => $user,
         ]);
     }
+
+    /**
+     * @param int $graboidId
+     * @return Application|Factory|View
+     */
+    public function show(int $graboidId)
+    {
+        $graboid = Graboid::with('comments')->find($graboidId);
+
+        return view('home.show', [
+            'graboid' => $graboid,
+        ]);
+    }
+
+
 }
 

@@ -23,7 +23,7 @@
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->lastlogin }}</td>
                             <td>
-                                <a href="/admin/users/{{ $user->id }}/edit" class="btn btn-warning">Edit</a>
+                                <a href="{{ route('admin.users.edit', ['userId' => $user->id]) }}" class="btn btn-warning">Edit</a>
                             </td>
                         </tr>
                     @endforeach

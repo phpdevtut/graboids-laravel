@@ -20,27 +20,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/smth', function () {
-    return view('something');
-});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
 Route::get('/logout', [AuthenticatedSessionController::class, 'destroy']);
 
 
 /////////////////////////////
-
-Route::get('/news', [NewsController::class, 'index'])
-    ->name('news.index');
-
 //Graboids
+Route::get('/', [GraboidsController::class, 'index'])
+    ->name('home');
 Route::get('/graboids/{graboidId}', [GraboidsController::class, 'show'])
     ->name('home.show');
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
 
 //Hunters
 Route::get('/hunters', [HuntersController::class, 'index'])
@@ -49,6 +43,10 @@ Route::get('/hunters/{hunterId}', [HuntersController::class, 'show'])
     ->name('hunters.show');
 Route::get('/hunters/{hunterId}/delete', [HuntersController::class, 'delete'])
     ->name('hunters.delete');
+
+//News
+Route::get('/news', [NewsController::class, 'index'])
+    ->name('news.index');
 
 //Upload
 Route::get('/upload', [UploadController::class, 'index'])

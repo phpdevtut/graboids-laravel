@@ -4,7 +4,8 @@
     <div class="outer_form_div">
         <h4>Edit a Graboid</h4>
         <div class="inner_form">
-            <form action="/admin/graboids/{{ $graboid->id }}" method="POST">
+            <form action="{{ route('admin.graboids.update', ['graboidsId' => $graboid->id]) }}" method="POST">
+
                 <div>
                     <img class="img-thumbnail rounded float-start" src="{{ $graboid->src }}" />
                 </div>
