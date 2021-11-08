@@ -3,10 +3,20 @@
 @section('content')
 <div class="outer_form_div">
     <h4>You can contact us by filling out the form below:</h4>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="inner_form">
-        <form action="/admin/emailToDatabase.php" method="POST">
+        <form action="{{ route('contact.store') }}" method="POST">
+            {{ csrf_field() }}
             <div class="col-auto mb-3">
-                <p>Email:</p>
+                <p>Subject:</p>
                 <input class="form-control" name="title">
             </div>
             <div class="col-auto mb-3">

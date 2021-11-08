@@ -19,9 +19,7 @@ class AboutController extends Controller
     {
     //    $about = DB::select('select * from about where id = 1');
 
-        $about = DB::table('about')
-            ->select('title', 'content')
-            ->get();
+        $about = About::getAbout();
 
         return view('about.content', [
             'about' => $about,
