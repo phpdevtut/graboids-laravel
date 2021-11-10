@@ -62,5 +62,18 @@ Route::get('/contact', [ContactController::class, 'index'])
 Route::post('/contact', [ContactController::class, 'store'])
     ->name('contact.store');
 
+//Profile
+Route::get('/myprofile', [ProfileController::class, 'index'])
+    ->name('profilehome.index');
+Route::get('/myprofile/messages', [ProfileController::class, 'index'])
+    ->name('messages.index');
+Route::get('/myprofile/uploaded', [ProfileController::class, 'index'])
+    ->name('uploaded.index');
+Route::get('/myprofile/friends', [ProfileController::class, 'index'])
+    ->name('friends.index');
+Route::get('/myprofile/tags', [ProfileController::class, 'index'])
+    ->name('tags.index');
+
+
 
 require __DIR__.'/auth.php';
