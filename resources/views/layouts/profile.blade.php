@@ -15,7 +15,7 @@
                 <li><a href="{{ route('home')}}">Home</a></li>
                 <li><a href="{{ route('news.index')}}">News</a></li>
                 <li><a href="{{ route('hunters.index')}}">Hunters</a></li>
-                <li><a href="{{ route('upload.index')}}">Upload</a></li>
+                <li><a href="">Upload</a></li>
                 <li><a href="{{ route('about.index')}}">About</a></li>
                 <li><a href="{{ route('contact.index')}}">Contact</a></li>
             </ul>
@@ -31,7 +31,7 @@
         <div class="col-3">
             <div class="adminPanelList">
                 <div class="list-group">
-                    <a href="{{ route('profilehome.index')}}" class="list-group-item list-group-item-action" aria-current="true">My Profile</a>
+                    <a href="{{ route('profile.show')}}" class="list-group-item list-group-item-action" aria-current="true">My Profile</a>
                     <a href="{{ route('messages.index')}}" class="list-group-item list-group-item-action">Messages</a>
                     <a href="{{ route('uploaded.index')}}" class="list-group-item list-group-item-action">Uploads</a>
                     <a href="{{ route('friends.index')}}" class="list-group-item list-group-item-action">Friends</a>

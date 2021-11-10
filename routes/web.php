@@ -7,6 +7,7 @@ use App\Http\Controllers\GraboidsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HuntersController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,8 +50,8 @@ Route::get('/news', [NewsController::class, 'index'])
     ->name('news.index');
 
 //Upload
-Route::get('/upload', [UploadController::class, 'index'])
-    ->name('upload.index');
+//Route::get('/upload', [UploadController::class, 'index'])
+//    ->name('upload.index');
 
 //About
 Route::get('/about', [AboutController::class, 'index'])
@@ -63,8 +64,8 @@ Route::post('/contact', [ContactController::class, 'store'])
     ->name('contact.store');
 
 //Profile
-Route::get('/myprofile', [ProfileController::class, 'index'])
-    ->name('profilehome.index');
+Route::get('/profile', [ProfileController::class, 'show'])
+    ->name('profile.show');
 Route::get('/myprofile/messages', [ProfileController::class, 'index'])
     ->name('messages.index');
 Route::get('/myprofile/uploaded', [ProfileController::class, 'index'])
