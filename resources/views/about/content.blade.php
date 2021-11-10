@@ -2,10 +2,8 @@
 
 @section('content')
     <div class="about">
-        @foreach ($about as $about)
-    <h2>{{ $about->title }}</h2>
-    <p>{{ $about->content }}</p>
-        @endforeach
+        <h2>{{ $about->title }}</h2>
+        <p>{{ $about->content }}</p>
     </div>
     <div class="clear"></div>
 @endsection
