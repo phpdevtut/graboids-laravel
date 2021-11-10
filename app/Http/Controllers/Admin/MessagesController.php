@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Message;
+use App\Service\MessageService;
 
 class MessagesController extends Controller
 {
@@ -18,12 +19,13 @@ class MessagesController extends Controller
         ]);
     }
 
-    public function open(int $messageId)
+    public function open(MessageService $messageService, int $messageId)
     {
         $message = Message::find($messageId);
 
-        $message->viewed_at = now();
-        $message->save();
+        if (!$message->viewed_at) {
+            $messageService->readMessage($message);
+        }
 
         return view('admin.messages.open', [
             'message' => $message,
