@@ -8,7 +8,6 @@ use App\Models\About;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\DB;
 
 class AboutController extends Controller
 {
@@ -17,9 +16,7 @@ class AboutController extends Controller
      */
     public function index()
     {
-    //    $about = DB::select('select * from about where id = 1');
-
-        $about = About::getAbout();
+        $about = About::first();
 
         return view('about.content', [
             'about' => $about,
