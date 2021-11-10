@@ -18,9 +18,11 @@ class AuthenticationTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_users_can_authenticate_using_the_login_screen()
+    public function test_admin_user_can_authenticate_using_the_login_screen()
     {
-        $user = User::factory()->create();
+        $user = User::factory()->create([
+            'admin' => true,
+        ]);
 
         $response = $this->post('/login', [
             'email' => $user->email,
@@ -28,7 +30,22 @@ class AuthenticationTest extends TestCase
         ]);
 
         $this->assertAuthenticated();
-        $response->assertRedirect(RouteServiceProvider::HOME);
+        $response->assertRedirect(route('admin.index'));
+    }
+
+    public function test_ordinary_user_can_authenticate_using_the_login_screen()
+    {
+        $user = User::factory()->create([
+            'admin' => false,
+        ]);
+
+        $response = $this->post('/login', [
+            'email' => $user->email,
+            'password' => 'password',
+        ]);
+
+        $this->assertAuthenticated();
+        $response->assertRedirect(route('profile.show'));
     }
 
     public function test_users_can_not_authenticate_with_invalid_password()

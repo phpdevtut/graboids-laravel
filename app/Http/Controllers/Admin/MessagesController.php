@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Message;
-use Illuminate\Http\Request;
+use App\Service\MessageService;
 
-class ContactsController extends Controller
+class MessagesController extends Controller
 {
     public function index()
     {
@@ -17,9 +19,13 @@ class ContactsController extends Controller
         ]);
     }
 
-    public function open(int $messageId)
+    public function open(MessageService $messageService, int $messageId)
     {
         $message = Message::find($messageId);
+
+        if (!$message->viewed_at) {
+            $messageService->readMessage($message);
+        }
 
         return view('admin.messages.open', [
             'message' => $message,
