@@ -35,7 +35,13 @@
                             <a href="{{ route('admin.graboids.index')}}" class="list-group-item list-group-item-action">Graboids</a>
                             <a href="{{ route('admin.news.index')}}" class="list-group-item list-group-item-action">Articles</a>
                             <a href="{{ route('admin.users.index')}}" class="list-group-item list-group-item-action">Users</a>
-                            <a href="{{ route('admin.messages.index')}}" class="list-group-item list-group-item-action">Messages</a>
+                            @inject('messageService', 'App\Service\MessageService')
+                            @if ($messageService->getUnreadMessagesCount())
+                                <a href="{{ route('admin.messages.index')}}" class="list-group-item list-group-item-action">Messages <span class="badge bg-secondary">{{ $messageService->getUnreadMessagesCount() }}</span></a>
+                            @else
+                                <a href="{{ route('admin.messages.index')}}" class="list-group-item list-group-item-action">Messages</a>
+                            @endif
+
                         </div>
                     </div>
                 </div>

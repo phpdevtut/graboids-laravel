@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateOrUpdateGraboidRequest;
 use App\Models\Graboid;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Routing\Redirector;
 
-class GraboidsController
+class GraboidsController extends Controller
 {
     /**
      * @return Application|Factory|View
@@ -38,24 +37,6 @@ class GraboidsController
             'graboid' => $graboid,
         ]);
     }
-
-//    /**
-//     * @param int $graboidId
-//     * @return Application|RedirectResponse|Redirector
-//     */
-//    public function update(int $graboidId)
-//    {
-//        $requestData = [
-//            'src' => $_POST['src'],
-//        ];
-//
-//        $graboid = Graboid::find($graboidId);
-//        $graboid->update($requestData);
-//
-//        return redirect(
-//            route('admin.graboids.index')
-//        );
-//    }
 
     public function delete(int $graboidId)
     {

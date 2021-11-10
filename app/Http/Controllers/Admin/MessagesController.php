@@ -1,12 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Message;
-use Illuminate\Http\Request;
 
-class ContactsController extends Controller
+class MessagesController extends Controller
 {
     public function index()
     {
@@ -20,6 +21,9 @@ class ContactsController extends Controller
     public function open(int $messageId)
     {
         $message = Message::find($messageId);
+
+        $message->viewed_at = now();
+        $message->save();
 
         return view('admin.messages.open', [
             'message' => $message,
