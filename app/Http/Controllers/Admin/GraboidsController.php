@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\CreateOrUpdateGraboidRequest;
 use App\Models\Graboid;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -38,21 +39,40 @@ class GraboidsController
         ]);
     }
 
-    /**
-     * @param int $graboidId
-     * @return Application|RedirectResponse|Redirector
-     */
-    public function update(int $graboidId)
+//    /**
+//     * @param int $graboidId
+//     * @return Application|RedirectResponse|Redirector
+//     */
+//    public function update(int $graboidId)
+//    {
+//        $requestData = [
+//            'src' => $_POST['src'],
+//        ];
+//
+//        $graboid = Graboid::find($graboidId);
+//        $graboid->update($requestData);
+//
+//        return redirect(
+//            route('admin.graboids.index')
+//        );
+//    }
+
+    public function delete(int $graboidId)
     {
-        $requestData = [
-            'src' => $_POST['src'],
-        ];
+        $graboid = Graboid::find($graboidId);
+        $graboid->delete();
+
+        return redirect(route('home'));
+    }
+
+    public function update(CreateOrUpdateGraboidRequest $request, int $graboidId)
+    {
+        $validated = $request->validated();
 
         $graboid = Graboid::find($graboidId);
-        $graboid->update($requestData);
+        $graboid->update($validated);
 
-        return redirect(
-            route('admin.graboids.index')
-        );
+        return redirect(route('admin.graboids.index'))
+            ->with('status', 'Graboid updated!');
     }
 }

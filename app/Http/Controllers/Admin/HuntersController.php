@@ -13,6 +13,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HuntersController extends Controller
 {
@@ -62,6 +63,7 @@ class HuntersController extends Controller
         $hunter->update($validated);
 
         return redirect(route('admin.hunters.index'))
+            ->withErrors(['status' => __($status)])
             ->with('status', 'Hunter updated!');
     }
 
@@ -94,5 +96,17 @@ class HuntersController extends Controller
 
         return redirect(route('admin.hunters.index'))
             ->with('status', 'Hunter added!');
+    }
+
+    /**
+     * @param int $hunterId
+     * @return Application|RedirectResponse|Redirector
+     */
+    public function delete(int $hunterId)
+    {
+        $hunter = Hunter::find($hunterId);
+        $hunter->delete();
+
+        return redirect(route('hunters.index'));
     }
 }

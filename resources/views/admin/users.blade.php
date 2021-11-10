@@ -4,7 +4,14 @@
     <div class="container">
         <div class="row">
             <div>
-                <h3 class="adminarticlesheader">Users</h3>
+                <h3 class="adminusersheader">Users</h3>
+
+                @if (session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                @endif
+
                 <table class="table table-dark table-striped">
                     <thead>
                     <tr>

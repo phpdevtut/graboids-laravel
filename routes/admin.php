@@ -27,14 +27,18 @@ Route::middleware(AllowedToEnterAdminPanel::class)->group(function() {
         ->name('admin.hunters.edit');
     Route::post('/admin/hunters/{hunterId}', [HuntersController::class, 'update'])
         ->name('admin.hunters.update');
+    Route::get('/hunters/{hunterId}/delete', [HuntersController::class, 'delete'])
+        ->name('hunters.delete');
 
 // Graboids
     Route::get('/admin/graboids', [GraboidsController::class, 'index'])
         ->name('admin.graboids.index');
-    Route::get('/admin/graboids/{graboidsId}/edit', [GraboidsController::class, 'edit'])
+    Route::get('/admin/graboids/{graboidId}/edit', [GraboidsController::class, 'edit'])
         ->name('admin.graboids.edit');
-    Route::get('/admin/graboids/{graboidsId}', [GraboidsController::class, 'update'])
+    Route::post('/admin/graboids/{graboidId}', [GraboidsController::class, 'update'])
         ->name('admin.graboids.update');
+    Route::get('/graboids/{graboidId}/delete', [GraboidsController::class, 'delete'])
+        ->name('graboids.delete');
 
 
 // News

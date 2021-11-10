@@ -10,6 +10,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\DB;
 
 class HuntersController extends Controller
 {
@@ -36,16 +37,5 @@ class HuntersController extends Controller
         return view('hunters.show', [
             'hunter' => $hunter,
         ]);
-    }
-
-    /**
-     * @param int $hunterId
-     * @return Application|RedirectResponse|Redirector
-     */
-    public function delete(int $hunterId)
-    {
-        Hunter::deleteById($hunterId);
-
-        return redirect(route('hunters.index'));
     }
 }

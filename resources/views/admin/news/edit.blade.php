@@ -4,6 +4,17 @@
     <div class="outer_form_div">
         <h4>Edit an Article</h4>
         <div class="inner_form">
+
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <form action="{{ route('admin.news.update', ['newsId' => $new->id]) }}" method="POST">
 
                 {{ csrf_field() }}

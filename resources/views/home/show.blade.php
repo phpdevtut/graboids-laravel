@@ -5,7 +5,7 @@
         @if (auth()->user() == NULL or !auth()->user()->admin)
         @elseif (auth()->user()->admin)
             <div>
-                <a class="btn btn-danger" href="/graboids/{{ $graboid->id }}/delete">Delete</a>
+                <a class="btn btn-danger" href="{{ route('graboids.delete', ['graboidId' => $graboid->id]) }}">Delete</a>
             </div>
         @endif
         <div class="card-image">
