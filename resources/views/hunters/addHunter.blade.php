@@ -4,16 +4,6 @@
     <div class="outer_form_div">
         <h4>Add a Hunter</h4>
 
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
         <div class="inner_form">
             <form action="{{ route('admin.hunters.store') }}" method="POST">
                 {{ csrf_field() }}

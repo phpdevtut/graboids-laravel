@@ -6,12 +6,6 @@
             <div>
                 <h3 class="adminMessagesHeader">Messages</h3>
 
-                @if (session('status'))
-                    <div class="alert alert-success">
-                        {{ session('status') }}
-                    </div>
-                @endif
-
                 <table class="table table-dark table-striped">
                     <thead>
                     <tr>

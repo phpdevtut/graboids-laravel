@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HuntersController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,8 +51,8 @@ Route::get('/news', [NewsController::class, 'index'])
     ->name('news.index');
 
 //Upload
-//Route::get('/upload', [UploadController::class, 'index'])
-//    ->name('upload.index');
+Route::get('/upload', [UploadController::class, 'index'])
+    ->name('upload.index');
 
 //About
 Route::get('/about', [AboutController::class, 'index'])

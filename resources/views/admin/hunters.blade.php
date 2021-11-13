@@ -6,12 +6,6 @@
             <div>
                 <h3 class="adminhuntersheader">Hunters</h3>
 
-                @if (session('status'))
-                    <div class="alert alert-success">
-                        {{ session('status') }}
-                    </div>
-                @endif
-
                 <a class="addhunter" href="{{ route('admin.hunters.new') }}">Add Hunter</a>
                 <table class="table table-dark table-striped">
                     <thead>
