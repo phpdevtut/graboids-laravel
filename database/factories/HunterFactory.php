@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\Hunter;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class HunterFactory extends Factory
@@ -20,15 +19,12 @@ class HunterFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         return [
-            'user_id' => User::factory()->create()->id,
             'src' => $this->faker->paragraph,
-            'tags' => $this->faker->paragraph,
             'description' => $this->faker->paragraph,
             'name' => $this->faker->paragraph,
-
         ];
     }
 }
