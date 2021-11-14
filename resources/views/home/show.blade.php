@@ -17,10 +17,9 @@
         </div>
         <hr>
         <div>
-            <form action="/graboids/{{ $graboid->id }}/comments" method="POST">
-                <textarea class="form-control" name="comment">
-
-                </textarea>
+            <form action="{{ route('graboids.comments.store', ['graboidId' => $graboid->id]) }}" method="POST">
+                @csrf
+                <textarea class="form-control" name="comment"></textarea>
                 <button class="btn btn-primary" type="submit">Post</button>
             </form>
         </div>
@@ -28,7 +27,11 @@
         <div class="comments">
             <p>Number of comments: {{ $graboid->comments()->count() }}</p>
             @foreach($graboid->comments as $comment)
-                <p>{{ $comment->comment }}</p>
+                <div class="comment_block">
+                    <h6>{{ $comment->user->name }}</h6>
+                    <p>{{ $comment->comment }}</p>
+                    <small>{{ $comment->created_at->toDayDateTimeString() }}</small>
+                </div>
             @endforeach
         </div>
     </div>
