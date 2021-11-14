@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Models\Graboid;
-use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class GraboidsController extends Controller
 {
@@ -17,17 +19,10 @@ class GraboidsController extends Controller
      */
     public function index()
     {
-        $user = null;
-
-        if (isset($_SESSION['user_id'])) {
-            $user = User::find($_SESSION['user_id']);
-        }
-
         $graboids = Graboid::all();
 
         return view('home.content', [
             'graboids' => $graboids,
-            'user' => $user,
         ]);
     }
 
@@ -44,6 +39,26 @@ class GraboidsController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function upload(Request $request): RedirectResponse
+    {
+        $path = Storage::putFile('graboids', $request->file('file'));
 
+        $graboid = new Graboid();
+        $graboid->src = $path;
+
+        if (auth()->check()) {
+            $graboid->user_id = auth()->id();
+        }
+
+        $graboid->save();
+
+        return redirect()
+            ->to(route('graboid.upload'))
+            ->with('status', 'Graboid image uploaded!');
+    }
 }
 

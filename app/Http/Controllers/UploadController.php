@@ -28,19 +28,6 @@ class UploadController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $path = Storage::putFile('uploads', $request->file('file'));
 
-        $file = new File();
-        $file->filepath = $path;
-
-        if (auth()->check()) {
-            $file->user_id = auth()->id();
-        }
-
-        $file->save();
-
-        return redirect()
-            ->to(route('upload.index'))
-            ->with('status', 'File uploaded!');
     }
 }
