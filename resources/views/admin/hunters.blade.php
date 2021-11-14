@@ -5,7 +5,8 @@
         <div class="row">
             <div>
                 <h3 class="adminhuntersheader">Hunters</h3>
-                <a class="addhunter" href="/admin/add-hunter">Add Hunter</a>
+
+                <a class="addhunter" href="{{ route('admin.hunters.new') }}">Add Hunter</a>
                 <table class="table table-dark table-striped">
                     <thead>
                     <tr>
@@ -20,7 +21,8 @@
                             <td>{{ $hunter->id }}</td>
                             <td>{{ $hunter->name }}</td>
                             <td>
-                                <a href="/admin/hunters/{{ $hunter->id }}/edit" class="btn btn-warning">Edit</a>
+                                <a href="{{ route('admin.hunters.edit', ['hunterId' => $hunter->id]) }}" class="btn btn-warning">Edit</a>
+
                             </td>
                         </tr>
                     @endforeach

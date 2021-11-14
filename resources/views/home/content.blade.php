@@ -3,11 +3,6 @@
 @extends('layouts.main')
 
 @section('content')
-    @if (session('message'))
-        <div class="alert alert-danger">
-            {{ session('message') }}
-        </div>
-    @endif
     <div class="myGallery">
         @foreach ($graboids->chunk(5) as $graboidsChunk)
             <div class="imgWrapper">

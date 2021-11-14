@@ -5,6 +5,7 @@
         <div class="row">
             <div>
                 <h3>Graboids</h3>
+
                 <table class="table table-dark table-striped">
                     <thead>
                     <tr>
@@ -19,7 +20,7 @@
                             <td>{{ $graboid->id }}</td>
                             <td>{{ $graboid->src }}</td>
                             <td>
-                                <a href="/admin/graboids/{{ $graboid->id }}/edit" class="btn btn-warning">Edit</a>
+                                <a href="{{ route('admin.graboids.edit', ['graboidId' => $graboid->id]) }}" class="btn btn-warning">Edit</a>
                             </td>
                         </tr>
                     @endforeach

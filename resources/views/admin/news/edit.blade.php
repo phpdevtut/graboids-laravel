@@ -1,21 +1,24 @@
-@extends('layouts.main')
+@extends('layouts.admin')
 
 @section('content')
     <div class="outer_form_div">
         <h4>Edit an Article</h4>
         <div class="inner_form">
-            <form action="/admin/news/{{ $new->id }}" method="POST">
+
+            <form action="{{ route('admin.news.update', ['newsId' => $new->id]) }}" method="POST">
+
+                {{ csrf_field() }}
                 <div class="col-auto mb-3">
                     <p>ID</p>
-                    <input class="form-control" name="src" value="{{ $new->id }}">
+                    <input class="form-control" name="id" value="{{ $new->id }}">
                 </div>
                 <div class="col-auto mb-3">
                     <p>title</p>
-                    <input class="form-control" name="name" value="{{ $new->title }}">
+                    <input class="form-control" name="title" value="{{ $new->title }}">
                 </div>
                 <div class="col-auto mb-3">
                     <p>content</p>
-                    <textarea  class="message_form" name="description">
+                    <textarea  class="message_form" name="content">
                         {{ $new->content }}
                     </textarea>
                 </div>

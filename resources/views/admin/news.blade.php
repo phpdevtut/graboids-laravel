@@ -4,8 +4,9 @@
     <div class="container">
         <div class="row">
             <div>
-                <h3 class="adminarticlesheader">Articles</h3>
-                <a class="addarticle" href="/admin/add-article">Add Article</a>
+                <h3 class="adminArticlesHeader">Articles</h3>
+
+                <a class="addArticle" href="{{ route('admin.articles.new') }}">Add Article</a>
                 <table class="table table-dark table-striped">
                     <thead>
                     <tr>
@@ -22,7 +23,7 @@
                             <td>{{ $new->title }}</td>
                             <td>{{ $new->content }}</td>
                             <td>
-                                <a href="/admin/news/{{ $new->id }}/edit" class="btn btn-warning">Edit</a>
+                                <a href="{{ route('admin.news.edit', ['newsId' => $new->id]) }}" class="btn btn-warning">Edit</a>
                             </td>
                         </tr>
                     @endforeach

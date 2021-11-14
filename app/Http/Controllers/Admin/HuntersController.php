@@ -5,10 +5,20 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateOrUpdateHunterRequest;
 use App\Models\Hunter;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Auth;
 
 class HuntersController extends Controller
 {
+    /**
+     * @return Application|Factory|View
+     */
     public function index()
     {
         $hunters = Hunter::all();
@@ -18,54 +28,83 @@ class HuntersController extends Controller
         ]);
     }
 
+    /**
+     * @param int $hunterId
+     */
+    public function show(int $hunterId)
+    {
+
+    }
+
+    /**
+     * @param int $hunterId
+     * @return Application|Factory|View
+     */
     public function edit(int $hunterId)
     {
         $hunter = Hunter::find($hunterId);
 
-        echo view('admin.hunters.edit', [
+        return view('admin.hunters.edit', [
             'hunter' => $hunter,
         ]);
-
-        echo $hunterId;
     }
 
-    public function update(int $hunterId)
+    /**
+     * @param CreateOrUpdateHunterRequest $request
+     * @param int $hunterId
+     * @return Application|RedirectResponse|Redirector
+     */
+    public function update(CreateOrUpdateHunterRequest $request, int $hunterId)
     {
-        $requestData = [
-            'src' => $_POST['src'],
-            'name' => $_POST['name'],
-            'description' => $_POST['description'],
-        ];
+        $validated = $request->validated();
 
         $hunter = Hunter::find($hunterId);
-        $hunter->update($requestData);
+        $hunter->update($validated);
 
-        header('Location: /admin/hunters');
+        return redirect(route('admin.hunters.index'))
+            ->with('status', 'Hunter updated!');
     }
 
-    public function add()
+    /**
+     * @return Application|Factory|View|RedirectResponse|Redirector
+     */
+    public function new()
     {
-        $blade = new Blade('views', 'cache');
-
-        // here we want to check a request:
-        // - we want to check if request has a cookie for us
-        // - if yes, we can check if there is a valid(existing) session id in the cookie
-        // - if no, we will redirect the user to login page
-        if (empty($_COOKIE)) {
-            header('Location: /admin/login.php');
+        if (!Auth::check()) {
+            return redirect(route('login'));
         }
 
-        if (empty($_SESSION['is_admin'])) {
-            header('Location: /');
+        $user = auth()->user();
+
+        if (!$user->admin) {
+            return redirect(route('home'));
         }
 
-        $html = $blade->render('hunters.addHunter');
-
-        echo $html;
+        return view('hunters.addHunter');
     }
 
-    public function create()
+    /**
+     * @param CreateOrUpdateHunterRequest $request
+     * @return Application|RedirectResponse|Redirector
+     */
+    public function store(CreateOrUpdateHunterRequest $request)
     {
+        $validated = $request->validated();
+        Hunter::create($validated);
 
+        return redirect(route('admin.hunters.index'))
+            ->with('status', 'Hunter added!');
+    }
+
+    /**
+     * @param int $hunterId
+     * @return Application|RedirectResponse|Redirector
+     */
+    public function delete(int $hunterId)
+    {
+        $hunter = Hunter::find($hunterId);
+        $hunter->delete();
+
+        return redirect(route('hunters.index'));
     }
 }

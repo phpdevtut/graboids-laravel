@@ -12,12 +12,12 @@
                 <a href="/"><img id="logo" src="/assets/images/Tremors_Logo_Sm.png"/></a>
                 <div id="menu">
                     <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="{{ route('news.index') }}">News</a></li>
-                        <li><a href="/hunters">Hunters</a></li>
-                        <li><a href="/upload">Upload</a></li>
-                        <li><a href="/about">About</a></li>
-                        <li><a href="/contact">Contact</a></li>
+                        <li><a href="{{ route('home')}}">Home</a></li>
+                        <li><a href="{{ route('news.index')}}">News</a></li>
+                        <li><a href="{{ route('hunters.index')}}">Hunters</a></li>
+                        <li><a href="{{ route('upload.index')}}">Upload</a></li>
+                        <li><a href="{{ route('about.index')}}">About</a></li>
+                        <li><a href="{{ route('contact.index')}}">Contact</a></li>
                     </ul>
                 </div>
                 <div id="auth">
@@ -36,6 +36,10 @@
             <!--
                  Here we had %content% as a pointer on where we want to embed a view
                  -->
+                <div>
+                    @include('shared.flash')
+                </div>
+
                 @yield('content')
             </div>
         </div>

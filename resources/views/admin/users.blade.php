@@ -4,7 +4,8 @@
     <div class="container">
         <div class="row">
             <div>
-                <h3 class="adminarticlesheader">Users</h3>
+                <h3 class="adminusersheader">Users</h3>
+
                 <table class="table table-dark table-striped">
                     <thead>
                     <tr>
@@ -23,7 +24,7 @@
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->lastlogin }}</td>
                             <td>
-                                <a href="/admin/users/{{ $user->id }}/edit" class="btn btn-warning">Edit</a>
+                                <a href="{{ route('admin.users.edit', ['userId' => $user->id]) }}" class="btn btn-warning">Edit</a>
                             </td>
                         </tr>
                     @endforeach

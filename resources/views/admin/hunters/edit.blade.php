@@ -1,10 +1,12 @@
-@extends('layouts.main')
+@extends('layouts.admin')
 
 @section('content')
     <div class="outer_form_div">
         <h4>Edit a Hunter</h4>
         <div class="inner_form">
-            <form action="/admin/hunters/{{ $hunter->id }}" method="POST">
+
+            <form action="{{ route('admin.hunters.update', ['hunterId' => $hunter->id]) }}" method="POST">
+                {{ csrf_field() }}
                 <div>
                     <img src="{{ $hunter->src }}" />
                 </div>

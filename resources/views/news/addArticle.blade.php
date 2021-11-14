@@ -3,8 +3,10 @@
 @section('content')
 <div class="outer_form_div">
     <h2>Add new article</h2>
+
     <div class="inner_form">
-        <form action="/admin/saveNewArticle.php" method="POST">
+        <form action="{{ route('admin.articles.store') }}" method="POST">
+            {{ csrf_field() }}
             <p>Title:</p>
                 <div name="title" class="col-auto mb-3">
                     <input class="form-control" name="title">

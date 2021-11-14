@@ -9,11 +9,14 @@
                 <h5 class="card-title">{{$hunter['name']}}</h5>
                 <p class="card-text">{{$hunter['description']}}</p>
                 <div class="col-auto mb-3">
-                    <button class="btn btn-primary" type="submit"><a href="/hunters/{{ $hunter['id'] }}">Go to hunters profile</a></button>
+                    <button class="btn btn-primary" type="submit">
+                        <a href="{{ route('hunters.show', ['hunterId' => $hunter->id]) }}">
+                            Go to hunters profile</a>
+                    </button>
                 </div>
-{{--
-                <a href="/hunters/{{ $hunter['id'] }}" class="btn btn-primary">Go to hunters profile</a>
---}}            @if (isset($_SESSION['is_admin']))
+
+                @if (auth()->user() == NULL or !auth()->user()->admin)
+                @elseif (auth()->user()->admin)
                     <div>
                         <a class="btn btn-danger" href="/hunters/{{ $hunter['id'] }}/delete">Delete</a>
                     </div>

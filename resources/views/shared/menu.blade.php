@@ -5,6 +5,10 @@
                 <li>
                     <a class="btn btn-primary" href="/admin">admin</a>
                 </li>
+            @else
+                <li>
+                    <a class="btn btn-primary" href="/profile">profile</a>
+                </li>
             @endif
             <li>
                 <a class="btn btn-primary" href="/logout">Logout</a>

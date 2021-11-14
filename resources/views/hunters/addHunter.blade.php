@@ -1,10 +1,12 @@
-@extends('layouts.admin2')
+@extends('layouts.admin')
 
 @section('content')
     <div class="outer_form_div">
         <h4>Add a Hunter</h4>
+
         <div class="inner_form">
-            <form action="/admin/addHunter.php" method="POST">
+            <form action="{{ route('admin.hunters.store') }}" method="POST">
+                {{ csrf_field() }}
                 <div class="col-auto mb-3">
                     <p>src</p>
                     <input class="form-control" name="src">

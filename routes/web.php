@@ -1,16 +1,14 @@
 <?php
 
 use App\Http\Controllers\AboutController;
-use App\Http\Controllers\Admin\AdminPanelController;
-use App\Http\Controllers\Admin\ArticlesController;
-use App\Http\Controllers\Admin\HuntersController;
-use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GraboidsController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\HunterController;
+use App\Http\Controllers\HuntersController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,71 +22,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/smth', function () {
-    return view('something');
-});
-
-Route::get('/logout', [AuthenticatedSessionController::class, 'destroy']);
-
-// Admin ////////////////////
-
-Route::get('/admin', [AdminPanelController::class, 'index'])
-    ->name('admin.index');
-Route::get('/admin/add-article', [ArticlesController::class, 'add'])
-    ->name('admin.addarticle');
-Route::get('/admin/add-hunter', [HuntersController::class, 'add'])
-    ->name('admin.addhunter');
-
-Route::get('/admin/hunters', [HuntersController::class, 'index'])
-    ->name('admin.index');
-Route::get('/admin/hunters/{hunterId}/edit', [HuntersController::class, 'edit'])
-    ->name('admin.edithunter');
-Route::get('/admin/hunters/{hunterId}', [HuntersController::class, 'update'])
-    ->name('admin.updatehunter');
-
-Route::get('/admin/graboids', [\App\Http\Controllers\Admin\GraboidsController::class, 'index'])
-    ->name('admin.index');
-Route::get('/admin/graboids/{graboidsId}/edit', [\App\Http\Controllers\Admin\GraboidsController::class, 'edit'])
-    ->name('admin.editgraboids');
-Route::get('/admin/graboids/{graboidsId}', [\App\Http\Controllers\Admin\GraboidsController::class, 'update'])
-    ->name('admin.updategraboids');
-
-Route::get('/admin/news', [\App\Http\Controllers\Admin\ArticlesController::class, 'index'])
-    ->name('admin.index');
-Route::get('/admin/news/{newsId}/edit', [ArticlesController::class, 'edit'])
-    ->name('admin.editnews');
-Route::get('/admin/news/{newsId}', [ArticlesController::class, 'update'])
-    ->name('admin.updatenews');
-
-Route::get('/admin/users', [UsersController::class, 'index'])
-    ->name('admin.index');
-Route::get('/admin/users/{usersId}/edit', [UsersController::class, 'edit'])
-    ->name('admin.editusers');
-
-
-
-/////////////////////////////
-
-Route::get('/news', [NewsController::class, 'index'])
-    ->name('news.index');
-
-//Graboids
-Route::get('/graboids/{graboidId}', [GraboidsController::class, 'show'])
-    ->name('home.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/logout', [AuthenticatedSessionController::class, 'destroy']);
+
+
+/////////////////////////////
+//Graboids
+Route::get('/', [GraboidsController::class, 'index'])
+    ->name('home');
+Route::get('/graboids/{graboidId}', [GraboidsController::class, 'show'])
+    ->name('home.show');
+
 //Hunters
-Route::get('/hunters', [HunterController::class, 'index'])
+Route::get('/hunters', [HuntersController::class, 'index'])
     ->name('hunters.index');
-Route::get('/hunters/{hunterId}', [HunterController::class, 'show'])
+Route::get('/hunters/{hunterId}', [HuntersController::class, 'show'])
     ->name('hunters.show');
-Route::get('/hunters/{hunterId}/delete', [HunterController::class, 'delete'])
+Route::get('/hunters/{hunterId}/delete', [HuntersController::class, 'delete'])
     ->name('hunters.delete');
+
+//News
+Route::get('/news', [NewsController::class, 'index'])
+    ->name('news.index');
 
 //Upload
 Route::get('/upload', [UploadController::class, 'index'])
@@ -101,6 +61,21 @@ Route::get('/about', [AboutController::class, 'index'])
 //Contact
 Route::get('/contact', [ContactController::class, 'index'])
     ->name('contact.index');
+Route::post('/contact', [ContactController::class, 'store'])
+    ->name('contact.store');
+
+//Profile
+Route::get('/profile', [ProfileController::class, 'show'])
+    ->name('profile.show');
+Route::get('/myprofile/messages', [ProfileController::class, 'index'])
+    ->name('messages.index');
+Route::get('/myprofile/uploaded', [ProfileController::class, 'index'])
+    ->name('uploaded.index');
+Route::get('/myprofile/friends', [ProfileController::class, 'index'])
+    ->name('friends.index');
+Route::get('/myprofile/tags', [ProfileController::class, 'index'])
+    ->name('tags.index');
+
 
 
 require __DIR__.'/auth.php';

@@ -1,12 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Models\Graboid;
 use App\Models\User;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 
 class HomeController extends Controller
 {
+    /**
+     * @return Application|Factory|View
+     */
     public function index()
     {
         $user = null;
@@ -17,7 +25,7 @@ class HomeController extends Controller
 
         $graboids = Graboid::all();
 
-        echo view('home.content', [
+        return view('home.content', [
             'graboids' => $graboids,
             'user' => $user,
         ]);
