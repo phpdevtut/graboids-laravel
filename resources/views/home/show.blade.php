@@ -9,7 +9,7 @@
             </div>
         @endif
         <div class="card-image">
-            <img src="{{ $graboid->src }}" class="card-img-top" alt="...">
+            <img src="{{ asset($graboid->src)  }}" class="card-img-top" alt="...">
         </div>
         <div class="card-body">
             <h5 class="big-card-title">test</h5>

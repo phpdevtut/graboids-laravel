@@ -53,8 +53,8 @@ Route::get('/news', [NewsController::class, 'index'])
 //Upload
 Route::get('/upload', [UploadController::class, 'index'])
     ->name('upload.index');
-Route::post('/upload', [UploadController::class, 'store'])
-    ->name('upload.store');
+Route::post('/upload', [GraboidsController::class, 'upload'])
+    ->name('graboid.upload');
 
 //About
 Route::get('/about', [AboutController::class, 'index'])
