@@ -15,7 +15,7 @@
                         <li><a href="{{ route('home')}}">Home</a></li>
                         <li><a href="{{ route('news.index')}}">News</a></li>
                         <li><a href="{{ route('hunters.index')}}">Hunters</a></li>
-                        <li><a href="">Upload</a></li>
+                        <li><a href="{{ route('upload.index')}}">Upload</a></li>
                         <li><a href="{{ route('about.index')}}">About</a></li>
                         <li><a href="{{ route('contact.index')}}">Contact</a></li>
                     </ul>
@@ -26,7 +26,9 @@
                     </div>
                 </div>
             </div>
-
+            <div>
+                @include('shared.flash')
+            </div>
             <div class="row">
                 <div class="col-3">
                     <div class="adminPanelList">

@@ -67,4 +67,6 @@ Route::middleware(AllowedToEnterAdminPanel::class)->group(function() {
         ->name('admin.messages.index');
     Route::get('/admin/{messageId}/open', [MessagesController::class, 'open'])
         ->name('admin.messages.open');
+    Route::get('/messages/{messageId}/delete', [MessagesController::class, 'delete'])
+        ->name('messages.delete');
 });

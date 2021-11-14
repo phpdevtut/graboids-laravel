@@ -6,12 +6,6 @@
             <div>
                 <h3 class="adminArticlesHeader">Articles</h3>
 
-                @if (session('status'))
-                    <div class="alert alert-success">
-                        {{ session('status') }}
-                    </div>
-                @endif
-
                 <a class="addArticle" href="{{ route('admin.articles.new') }}">Add Article</a>
                 <table class="table table-dark table-striped">
                     <thead>

@@ -1,19 +1,9 @@
-@extends('layouts.main')
+@extends('layouts.admin')
 
 @section('content')
     <div class="outer_form_div">
         <h4>Edit a Hunter</h4>
         <div class="inner_form">
-
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
 
             <form action="{{ route('admin.hunters.update', ['hunterId' => $hunter->id]) }}" method="POST">
                 {{ csrf_field() }}

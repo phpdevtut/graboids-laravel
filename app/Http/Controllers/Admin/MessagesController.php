@@ -31,4 +31,12 @@ class MessagesController extends Controller
             'message' => $message,
         ]);
     }
+
+    public function delete(int $messageId)
+    {
+        $message = Message::find($messageId);
+        $message->delete();
+
+        return redirect(route('admin.messages.index'));
+    }
 }
