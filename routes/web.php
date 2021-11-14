@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\GraboidsCommentsController;
 use App\Http\Controllers\GraboidsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HuntersController;
@@ -37,6 +38,11 @@ Route::get('/', [GraboidsController::class, 'index'])
     ->name('home');
 Route::get('/graboids/{graboidId}', [GraboidsController::class, 'show'])
     ->name('home.show');
+
+////////////////////////////
+/// Graboids Comments
+Route::post('/graboids/{graboidId}/comments', [GraboidsCommentsController::class, 'store'])
+    ->name('graboids.comments.store');
 
 //Hunters
 Route::get('/hunters', [HuntersController::class, 'index'])
