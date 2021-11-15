@@ -16,12 +16,23 @@
             <p class="big-card-text">{{ $hunter->description }}</p>
         </div>
         <hr>
-        <div class="comments">
-            <p>Number of comments: {{ $hunter->comments()->count() }}</p>
-            @foreach($hunter->comments as $comment)
-                <p>{{ $comment->comment }}</p>
-            @endforeach
-        </div>
-    </div>
+            <div>
+                <form action="{{ route('hunters.comments.store', ['hunterId' => $hunter->id]) }}" method="POST">
+                    @csrf
+                    <textarea class="form-control" name="comment"></textarea>
+                    <button class="btn btn-primary" type="submit">Post</button>
+                </form>
+            </div>
+            <hr>
+            <div class="comments">
+                <p>Number of comments: {{ $hunter->comments()->count() }}</p>
+                @foreach($hunter->comments as $comment)
+                    <div class="comment_block">
+                        <h6>{{ $comment->user->name }}</h6>
+                        <p>{{ $comment->comment }}</p>
+                        <small>{{ $comment->created_at->toDayDateTimeString() }}</small>
+                    </div>
+                @endforeach
+            </div>
 
 @endsection
