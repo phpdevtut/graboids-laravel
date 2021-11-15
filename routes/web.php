@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GraboidsCommentsController;
 use App\Http\Controllers\GraboidsController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HuntersCommentsController;
 use App\Http\Controllers\HuntersController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
@@ -29,7 +31,14 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/logout', [AuthenticatedSessionController::class, 'destroy']);
+Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])
+    ->name('logout');
+Route::get('/login', [AuthenticatedSessionController::class, 'create'])
+    ->name('login');
+Route::get('/register', [RegisteredUserController::class, 'create'])
+    ->name('register');
+
+
 
 
 /////////////////////////////
@@ -51,6 +60,8 @@ Route::get('/hunters/{hunterId}', [HuntersController::class, 'show'])
     ->name('hunters.show');
 Route::get('/hunters/{hunterId}/delete', [HuntersController::class, 'delete'])
     ->name('hunters.delete');
+Route::post('/hunters/{hunterId}/comments', [HuntersCommentsController::class, 'store'])
+    ->name('hunters.comments.store');
 
 //News
 Route::get('/news', [NewsController::class, 'index'])
