@@ -1,17 +1,15 @@
 <?php
 
 use App\Http\Controllers\AboutController;
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GraboidsCommentsController;
 use App\Http\Controllers\GraboidsController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HuntersCommentsController;
 use App\Http\Controllers\HuntersController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UploadController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -85,6 +83,8 @@ Route::get('/myprofile/friends', [ProfileController::class, 'index'])
 Route::get('/myprofile/tags', [ProfileController::class, 'index'])
     ->name('tags.index');
 
-
+// Users
+Route::get('/users/{userId}', [UsersController::class, 'show'])
+    ->name('users.show');
 
 require __DIR__.'/auth.php';
