@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateHuntersCommentRequest;
@@ -8,8 +10,13 @@ use Illuminate\Http\RedirectResponse;
 
 class HuntersCommentsController extends Controller
 {
+    /**
+     * @param CreateHuntersCommentRequest $request
+     * @param int $hunterId
+     * @return RedirectResponse
+     */
     public function store(
-        CreatehuntersCommentRequest $request,
+        CreateHuntersCommentRequest $request,
         int $hunterId
     ): RedirectResponse {
         if (!auth()->check()) {
