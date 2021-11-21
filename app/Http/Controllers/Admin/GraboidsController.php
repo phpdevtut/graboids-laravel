@@ -41,6 +41,8 @@ class GraboidsController extends Controller
     public function delete(int $graboidId)
     {
         $graboid = Graboid::find($graboidId);
+
+        // $graboid->comments()->delete(); first way to delete
         $graboid->delete();
 
         return redirect(route('home'));

@@ -13,6 +13,16 @@ class Graboid extends Model
         'src',
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($graboid) {
+            // send an email
+            $graboid->comments()->delete();
+        });
+    }
+
     /**
      * @return MorphMany
      */
