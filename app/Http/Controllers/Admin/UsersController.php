@@ -11,16 +11,8 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 
-
 class UsersController extends Controller
 {
-    /*    private $blade;
-
-        public function __construct()
-        {
-            $this->blade = new Blade('views', 'cache');
-        }*/
-
     /**
      * @return Application|Factory|View
      */

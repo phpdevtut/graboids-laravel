@@ -28,7 +28,7 @@
             <p>Number of comments: {{ $graboid->comments()->count() }}</p>
             @foreach($graboid->comments as $comment)
                 <div class="comment_block">
-                    <h6>{{ $comment->user->name }}</h6>
+                    <a href="{{ route('users.show', ['userId' => $comment->user->id]) }}"><h6>{{ $comment->user->name }}</h6></a>
                     <p>{{ $comment->comment }}</p>
                     <small>{{ $comment->created_at->toDayDateTimeString() }}</small>
                 </div>
