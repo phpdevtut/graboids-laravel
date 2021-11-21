@@ -36,8 +36,6 @@
                     <a href="{{ route('uploaded.index')}}" class="list-group-item list-group-item-action">Uploads</a>
                     <a href="{{ route('friends.index')}}" class="list-group-item list-group-item-action">Friends</a>
                     <a href="{{ route('tags.index')}}" class="list-group-item list-group-item-action">Tags</a>
-
-
                 </div>
             </div>
         </div>

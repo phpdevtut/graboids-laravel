@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-use App\Models\Message;
+use App\Models\ContactFormMessage;
 
 class MessageService
 {
     public function getUnreadMessagesCount()
     {
-        return Message::whereNull('viewed_at')->count();
+        return ContactFormMessage::whereNull('viewed_at')->count();
     }
 
     /**
-     * @param Message $message
+     * @param ContactFormMessage $message
      */
-    public function readMessage(Message $message)
+    public function readMessage(ContactFormMessage $message)
     {
         $message->viewed_at = now();
         $message->save();
