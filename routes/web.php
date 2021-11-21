@@ -6,6 +6,7 @@ use App\Http\Controllers\GraboidsCommentsController;
 use App\Http\Controllers\GraboidsController;
 use App\Http\Controllers\HuntersCommentsController;
 use App\Http\Controllers\HuntersController;
+use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UploadController;
@@ -74,7 +75,7 @@ Route::post('/contact', [ContactController::class, 'store'])
 //Profile
 Route::get('/profile', [ProfileController::class, 'show'])
     ->name('profile.show');
-Route::get('/myprofile/messages', [ProfileController::class, 'index'])
+Route::get('/myprofile/messages', [MessagesController::class, 'index'])
     ->name('messages.index');
 Route::get('/myprofile/uploaded', [ProfileController::class, 'index'])
     ->name('uploaded.index');
@@ -86,5 +87,11 @@ Route::get('/myprofile/tags', [ProfileController::class, 'index'])
 // Users
 Route::get('/users/{userId}', [UsersController::class, 'show'])
     ->name('users.show');
+
+// Messages
+Route::post('/messages', [MessagesController::class, 'store'])
+    ->name('messages.store');
+Route::get('/chats/{authorId}', [MessagesController::class, 'chat'])
+    ->name('messages.chat');
 
 require __DIR__.'/auth.php';

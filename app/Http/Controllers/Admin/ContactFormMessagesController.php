@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Message;
+use App\Models\ContactFormMessage;
 use App\Service\MessageService;
 
-class MessagesController extends Controller
+class ContactFormMessagesController extends Controller
 {
     public function index()
     {
-        $messages = Message::all();
+        $messages = ContactFormMessage::all();
 
         return view('admin.messages', [
             'messages' => $messages,
@@ -21,7 +21,7 @@ class MessagesController extends Controller
 
     public function open(MessageService $messageService, int $messageId)
     {
-        $message = Message::find($messageId);
+        $message = ContactFormMessage::find($messageId);
 
         if (!$message->viewed_at) {
             $messageService->readMessage($message);
@@ -34,7 +34,7 @@ class MessagesController extends Controller
 
     public function delete(int $messageId)
     {
-        $message = Message::find($messageId);
+        $message = ContactFormMessage::find($messageId);
         $message->delete();
 
         return redirect(route('admin.messages.index'));
