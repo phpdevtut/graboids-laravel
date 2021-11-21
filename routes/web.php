@@ -31,16 +31,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])
-    ->name('logout');
-Route::get('/login', [AuthenticatedSessionController::class, 'create'])
-    ->name('login');
-Route::get('/register', [RegisteredUserController::class, 'create'])
-    ->name('register');
-
-
-
-
 /////////////////////////////
 //Graboids
 Route::get('/', [GraboidsController::class, 'index'])
